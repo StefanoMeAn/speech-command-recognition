@@ -218,3 +218,31 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Local audio data and generated artifacts
+dataset/
+data/processed/
+models/
+*.keras
+*.h5
+recording*.wav
+
+# Local dataset and generated files
+dataset/
+data/processed/
+models/
+*.keras
+*.h5
+recording*.wav
+
+# Local dataset and generated files
+dataset/
+data/processed/
+models/
+*.keras
+*.h5
+recording*.wav
+
+# Local audio data and generated files
+data/raw/speech_commands_v0.02/
+data/processed/
