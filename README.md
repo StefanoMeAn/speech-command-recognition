@@ -1,12 +1,12 @@
 # Speech Command Recognition with CNNs and Recurrent Neural Networks
 
-I compared convolutional and recurrent neural networks for classifying **35 spoken commands** from the [Google Speech Commands v0.02 dataset](https://www.tensorflow.org/datasets/catalog/speech_commands). The experiments use Short-Time Fourier Transform (STFT) and Mel-Frequency Cepstral Coefficient (MFCC) representations, and the repository includes local microphone demos.
+This project compares convolutional and recurrent neural networks for classifying **35 spoken commands** from the [Google Speech Commands v0.02 dataset](https://www.tensorflow.org/datasets/catalog/speech_commands). The experiments use Short-Time Fourier Transform (STFT) and Mel-Frequency Cepstral Coefficient (MFCC) representations, and the repository includes local microphone demos.
 
 The best configuration in these experiments was **BiLSTM + MFCC**, reaching **91.79% test accuracy** and approximately **0.912 macro F1-score**.
 
 ## Project Overview
 
-I investigated how the audio representation and network architecture affect isolated-word recognition. I trained and evaluated six configurations using consistent dataset partitions:
+The experiments investigate how audio representation and network architecture affect isolated-word recognition. Six configurations were trained and evaluated using consistent dataset partitions:
 
 - CNN with STFT and MFCC inputs
 - LSTM with STFT and MFCC sequences
@@ -31,7 +31,7 @@ The exploration notebook illustrates background-noise augmentation. This does no
 
 ## Methodology
 
-I compared three architectures with two audio representations:
+Three architectures are compared using two audio representations:
 
 | Architecture | Input representation |
 |---|---|
@@ -63,7 +63,7 @@ Detailed classification reports, confusion matrices, and training histories are 
 ## Repository Structure
 
 ```text
-.
+speech-command-recognition/
 ├── app.py                         # Local Gradio microphone dashboard
 ├── demo.py                        # Single-command CNN + STFT terminal demo
 ├── environment.yml
@@ -84,9 +84,11 @@ Detailed classification reports, confusion matrices, and training histories are 
 
 ## Installation
 
-Python **3.11** is recommended. From the repository root, create the Conda environment:
+Python **3.11** is recommended. Clone the repository and create the Conda environment:
 
 ```bash
+git clone https://github.com/StefanoMeAn/speech-command-recognition.git
+cd speech-command-recognition
 conda env create -f environment.yml
 conda activate speech-command-recognition
 ```
@@ -97,9 +99,11 @@ Alternatively, install the Python packages in an existing Python 3.11 environmen
 pip install -r requirements.txt
 ```
 
-The microphone demos need a working audio input device and the system audio libraries required by `sounddevice`. On Ubuntu, PortAudio may need to be installed through the package manager. Ensure `requirements.txt` includes `gradio`, `sounddevice`, and `scikit-learn` (used in evaluation notebooks). CPU-only TensorFlow is sufficient for the demos; GPU support is optional.
+The microphone demos need a working audio input device and the system audio libraries required by `sounddevice`. On Ubuntu, PortAudio may need to be installed through the package manager. The dependency file includes `gradio`, `sounddevice`, and `scikit-learn` for the dashboard and evaluation notebooks. The listed `tensorflow[and-cuda]` dependency installs optional NVIDIA CUDA support on supported systems; a working GPU is not required to run the local demos.
 
 ## Usage
+
+The repository includes trained `.keras` models and label files, so the demos do not require retraining. Both demos use the microphone connected to the same computer running Python. Run the commands below from the repository root.
 
 ### Gradio dashboard
 
@@ -124,7 +128,7 @@ Press **Enter** to record one second of audio. This demo uses the saved **CNN + 
 3. Run `notebooks/02_cnn_training.ipynb` for the CNN experiments.
 4. Run `notebooks/03_rnn_training.ipynb` for the LSTM/BiLSTM experiments and model comparison.
 
-Training times and exact metrics can vary with hardware and environment. Saved `.keras` files allow the demos to run without retraining.
+Training times and exact metrics can vary with hardware and environment. Open the notebooks with `jupyter lab` from the repository root. Saved `.keras` files allow the demos to run without retraining.
 
 ## Limitations and Future Work
 
